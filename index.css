@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input, 
+.output {
+    width: 45%;
+    border-radius: 2.5rem;
+    border: 2px solid rgb(179, 177, 177);
+    padding: 1.5rem;
+}
+
+.output {
+    overflow-y: scroll;
+    max-height: 562px;
+}
+
+.output label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.output label:last-of-type {
+    margin-bottom: unset;
+}
+
+.output label > span {
+    font-weight: 300;
+}
+
+.output > h2 {
+    margin: 0 0 .5rem 0;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+form input[type=number]{
+    margin-bottom: 3rem;
+    border: 2px solid rgb(179, 177, 177);
+    padding-left: .5rem;
+    height: 1.5rem;
+    width: 100%;
+    display: block;
+}
+
+form input[type=submit]{
+    background: orangered;
+    color: white;
+    border: 2px solid transparent;
+    padding: 1.5rem;
+    transition: all .5s;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    text-transform: uppercase;
+}
+
+form input[type=submit]::placeholder{
+    color: orangered;
+}
+
+form input[type=submit]:hover{
+    transition: all .5s;
+    background: white;
+    color: orangered;
+    border-color: orangered;
+}
+
+form input[type=number],
+form input[type=submit]{
+    border-radius: .25rem;
+}
