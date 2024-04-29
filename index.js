@@ -1,20 +1,18 @@
 // DOM CODE (not relevant)
 
+const newTwin = document.getElementById('new_twin');
 const multiInput = document.getElementById('input_multi');
 const singleInput = document.getElementById('input_sigle');
+const tripleInput = document.getElementById('input_triple');
 const trigger = document.getElementById('clicker');
 const displayLabels = document.querySelectorAll('.display_output');
 
 // CALCULATION CODE (relevant)
 
-let multiPackPrice = 0;
+let newTwinPrice = 0;
 let singlePackPrice = 0;
-const percentageModifier = 0.95;
-const discount = 5;
-let priceWithDiscount = 0;
-let originalPrice = 0;
-let preDiscountTotal = 0;
-let newSalePrice = 0;
+let multiPackPrice = 0;
+let triplePackPrice = 0;
 
 // HELPER METHODS
 
@@ -30,45 +28,59 @@ const displayOutput = (val) => {
 const formatVal = (val, display = false) => {
     const format = val.toFixed(2);
     if(display) displayOutput(format);
-    return parseFloat(format);
+    return format;
+}
+
+const grossUp = (val, percentage) => {
+    return val / percentage;
 }
 
 // CALCULATIONS
 
-const setNewSalePrice = () => {
-    newSalePrice = formatVal(preDiscountTotal * 0.9, true); 
+const setDiscountedTripplePrice = (val) => {
+    formatVal(val * .9, true);
 }
 
-const setPreDiscountTotal = () => {
-    preDiscountTotal = formatVal(singlePackPrice + originalPrice, true);
-    setNewSalePrice();
+const setNewTripplePrice = () => {
+    setDiscountedTripplePrice(formatVal(singlePackPrice + grossUp(newTwinPrice, .95), true));
 }
 
-const setOriginalPrice = () => {
-    originalPrice = formatVal(priceWithDiscount / percentageModifier, true);
-    setPreDiscountTotal();
+const setOldTripleGrossedUp = () => {
+    formatVal(grossUp(triplePackPrice, .9), true);
+    setNewTripplePrice();
 }
 
-const setpriceWithDiscount = () => {
-    const discountAmount = formatVal((discount / 100) * multiPackPrice, true); 
-    priceWithDiscount = formatVal((multiPackPrice - discountAmount), true);
-    setOriginalPrice();
+const setOldTwinGrossedUp = () => {
+    formatVal(grossUp(multiPackPrice, .95), true);
+    setOldTripleGrossedUp();
+}
+
+const setSinglePrice = () => {
+    formatVal(singlePackPrice, true);
+    setOldTwinGrossedUp();
 }
 
 // DOM CODE (not relevant)
 
 const setVals = (e) => {
     e.preventDefault();
-    multiPackPrice = parseFloat(multiInput.value);
+    newTwinPrice = parseFloat(newTwin.value);
     singlePackPrice = parseFloat(singleInput.value);
-    !multiPackPrice > 0 || !singlePackPrice > 0
+    multiPackPrice = parseFloat(multiInput.value);
+    triplePackPrice = parseFloat(tripleInput.value);
+    !multiPackPrice > 0 || !singlePackPrice > 0 || !newTwinPrice > 0 || !triplePackPrice > 0
     ? alert('Please input your numbers again')
-    : setpriceWithDiscount()
+    : setSinglePrice()
 }
 
-const setDispalyMulti = (e) => document.getElementById('init_multi').innerHTML = `£${e.target.value}`;
+const setDisplayNew = (e) => document.getElementById('twin_new').innerHTML = `£${e.target.value}`;
 const setDisplaySingle = (e) => document.getElementById('init_single').innerHTML = `£${e.target.value}`;
+const setDispalyMulti = (e) => document.getElementById('init_multi').innerHTML = `£${e.target.value}`;
+const setDisplayTriple = (e) => document.getElementById('init_triple').innerHTML = `£${e.target.value}`;
 
-multiInput.addEventListener('keyup', setDispalyMulti)
-singleInput.addEventListener('keyup', setDisplaySingle)
+newTwin.addEventListener('keyup', setDisplayNew);
+singleInput.addEventListener('keyup', setDisplaySingle);
+multiInput.addEventListener('keyup', setDispalyMulti);
+tripleInput.addEventListener('keyup', setDisplayTriple);
+
 trigger.addEventListener('click', setVals);
