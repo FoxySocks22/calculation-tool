@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing & Components</title>
+    <link rel="stylesheet" type="text/css" href="index.css"/>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="input">
+            <form action="" method="">
+                <lebel for="new_twin">New Twin Price (incl 5%)</lebel>
+                <input id="new_twin" type="number" value="12"/>
+                <label for="input_sigle">Old Single Price</label>
+                <input id="input_sigle" type="number" value="10"/>
+                <lebel for="input_multi">Old Twin Price</lebel>
+                <input id="input_multi" type="number" value="15"/>
+                <lebel for="input_triple">Old Triple Price</lebel>
+                <input id="input_triple" type="number" value="23.21"/>
+                <input id="clicker" type="submit" value="send it"/>
+            </form>
+        </div>
+        <div class="output">
+            <h2>Calculation Outputs:</h2>
+            <label>New Twin Price incl 5%: 
+                <span id="twin_new"></span>
+            </label>
+            <label>Old Single Price: 
+                <span id="init_single"></span>
+            </label>
+            <label>Old Twin Price: 
+                <span id="init_multi"></span>
+            </label>
+            <label>Old Tripple Price: 
+                <span id="init_triple"></span>
+            </label>
+            <label>Single Price: 
+                <span class="display_output"></span>
+            </label>
+            <label>Old Twin Grossed Up: 
+                <span class="display_output"></span>
+            </label>
+            <label>Old Triple Grossed Up: 
+                <span class="display_output"></span>
+            </label>
+            <label>New Triple Price: 
+                <span class="display_output"></span>
+            </label>
+            <label>Discounted Triple Price: 
+                <span class="display_output"></span>
+            </label>
+        </div>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
